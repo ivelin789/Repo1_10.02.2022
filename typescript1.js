@@ -21,9 +21,35 @@ for(var i = 0; i < masiv1.length; i++) {
     console.log("sum is" + add(masiv1[i], masiv2[i]))
 }
  */
-var Material;
-(function (Material) {
-    Material[Material["Glass"] = 0] = "Glass";
-    Material[Material["Plastic"] = 1] = "Plastic";
-    Material[Material["Ceramic"] = 2] = "Ceramic";
-})(Material || (Material = {}));
+var MATERIALS;
+(function (MATERIALS) {
+    MATERIALS["Glass"] = "Gla";
+    MATERIALS["Plastic"] = "Pla";
+    MATERIALS["Ceramic"] = "Cer";
+})(MATERIALS || (MATERIALS = {}));
+var GlassMug = /** @class */ (function () {
+    function GlassMug() {
+        this.material = MATERIALS.Glass;
+    }
+    return GlassMug;
+}());
+var CeramicMug = /** @class */ (function () {
+    function CeramicMug() {
+        this.material = MATERIALS.Ceramic;
+    }
+    return CeramicMug;
+}());
+var PlasticMug = /** @class */ (function () {
+    function PlasticMug() {
+        this.material = MATERIALS.Plastic;
+    }
+    return PlasticMug;
+}());
+var items = [new CeramicMug(), new PlasticMug(), new GlassMug()];
+items.forEach(function (e) {
+    e["break"]();
+});
+var glassMug = items.find(function (e) { return e.material === MATERIALS.Glass; });
+glassMug["break"]();
+var materials = items.map(function (e) { return e.material; });
+console.log(materials);

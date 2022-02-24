@@ -37,7 +37,7 @@ class GlassMug implements Breakable {
     material: MATERIALS;
     break: () => {}
     constructor() {
-    type.mat = "Glass"
+    this.material = MATERIALS.Glass
     }
 }
 
@@ -45,7 +45,7 @@ class CeramicMug implements Breakable {
     material: MATERIALS;
     break: () => {}
     constructor() {
-    type.mat = "Ceramic"
+    this.material = MATERIALS.Ceramic
     }
 }
 
@@ -53,7 +53,18 @@ class PlasticMug implements Breakable {
     material: MATERIALS;
     break: () => {}
     constructor () {
-    type.mat = "Plastic"
+    this.material = MATERIALS.Plastic
     }
 }
 
+let items = [new CeramicMug(), new PlasticMug(), new GlassMug()];
+
+items.forEach(e => {
+    e.break();
+});
+
+const glassMug = items.find(e => e.material === MATERIALS.Glass);
+glassMug.break();
+
+const materials = items.map(e => e.material);
+console.log(materials);
